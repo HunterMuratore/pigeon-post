@@ -12,11 +12,14 @@ router.post('/register', async (req, res) => {
     //     .catch(err => console.log(err));
 
     try {
-        await User.create(data);
+        const newUser = await User.create(data);
     
         res.json({ message: 'User added successfully!', user: newUser});
     
-      } catch (err) { res.status(400).json(err) };
+      } catch (err) { 
+        console.log(err);
+        res.status(400).json(err); 
+    };
 });
 
 module.exports = router;

@@ -1,6 +1,7 @@
 const express = require('express');
 const view_routes = require('./controllers/view_routes');
 const user_routes = require('./controllers/user_routes');
+const db = require('./config/connection');
 require('dotenv').config();
 
 const PORT = process.env.PORT || 3333;
@@ -15,4 +16,8 @@ app.use(express.static('public'));
 app.use('/', view_routes);
 app.use('/auth', user_routes);
 
-app.listen(PORT, () => console.log('Server started on port', PORT));
+// Sync and create tables
+db.sync({ force: false }) // True will remove the original tables and recreate them (not good to use bc it will delete your data every time you run the server)
+    .then(() => {
+        app.listen(PORT, () => console.log('Server started on port', PORT));
+    });
