@@ -1,0 +1,27 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    background-color: bisque;
+}
+
+form {
+    width: 380px;
+    display: flex;
+    flex-direction: column;
+    margin: 35px auto 0 
+}
+
+form > * {
+    padding: 7px 10px;
+    margin: 5px 0;
+}
+
+form h1 {
+    text-align: center;
+    color: rgb(38, 190, 190);
+}
