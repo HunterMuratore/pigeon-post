@@ -9,6 +9,10 @@ body {
     background-color: bisque;
 }
 
+h1 {
+    color: rgb(38, 190, 190);
+}
+
 form {
     width: 380px;
     display: flex;

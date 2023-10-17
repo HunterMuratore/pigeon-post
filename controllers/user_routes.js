@@ -2,6 +2,8 @@ const router = require('express').Router();
 const path = require('path');
 const User = require('../models/User');
 
+/* /auth routes */
+
 // POST request route that retrieves the registration form data and creates a new user in the db
 // The route will respond with a message of 'User added successfully' 
 router.post('/register', async (req, res) => {
@@ -12,13 +14,13 @@ router.post('/register', async (req, res) => {
     //     .catch(err => console.log(err));
 
     try {
-        const newUser = await User.create(data);
+        await User.create(data);
     
-        res.json({ message: 'User added successfully!', user: newUser});
-    
-      } catch (err) { 
-        console.log(err);
-        res.status(400).json(err); 
+        res.redirect('/');
+        
+    } catch (err) { 
+        console.log(err.errors);
+        res.redirect('/register');
     };
 });
 

@@ -3,6 +3,8 @@ const router = require('express').Router();
 const path = require('path');
 const User = require('../models/User');
 
+/* / routes */
+
 // Add one test GET route at root
 router.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../views/landing.html'));
