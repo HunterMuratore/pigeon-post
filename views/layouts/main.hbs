@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pigeon Post</title>
+     <!-- This is a server route from the public directory -->
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header class="row justify-between align-center">
+        <h3><a href="/">Pigeon Post</a></h3>
+
+        <nav class="row align-center">
+            {{#if user}}
+                <p>Welcome, <span>{{user.email}}</span>!</p>
+                <a href="/coo">Post a Coo</a>
+                <span>or</span>
+                <a href="/logout">Log Out</a>
+            {{else}}
+                <a href="/register">Register</a>
+                <span>or</span>
+                <a href="/login">Login</a>
+            {{/if}}
+        </nav>
+    </header>
+
+    {{{body}}}
+</body>
+</html>

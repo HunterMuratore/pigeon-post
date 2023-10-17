@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const path = require('path');
 const User = require('../models/User');
 
 /* /auth routes */
@@ -9,18 +8,37 @@ const User = require('../models/User');
 router.post('/register', async (req, res) => {
     const data = req.body;
 
-    // User.create(data)
-    //     .then(newUser => res.send({ message: 'User added successfully!', user: newUser }))
-    //     .catch(err => console.log(err));
-
     try {
         await User.create(data);
     
+        // Already have a route that renders landing so just redirect to it here
         res.redirect('/');
         
     } catch (err) { 
         console.log(err.errors);
         res.redirect('/register');
+    };
+});
+
+router.post('/login', async (req, res) => {
+    const data = req.body;
+
+    try {
+        // Find the user by the email they sent through the form
+        const user = await User.findOne({
+            where: {
+                email: data.email
+            }
+        });
+
+        // Take the id of the user and set it to the session id
+        req.session.user_id = user.id;
+    
+        res.redirect('/');
+        
+    } catch (err) { 
+        console.log(err.errors);
+        res.redirect('/login');
     };
 });
 
