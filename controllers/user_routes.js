@@ -20,4 +20,26 @@ router.post('/register', async (req, res) => {
     };
 });
 
+router.post('/login', async (req, res) => {
+    const data = req.body;
+
+    try {
+        // Find the user by the email they sent through the form
+        const user = await User.findOne({
+            where: {
+                email: data.email
+            }
+        });
+
+        // Take the id of the user and set it to the session id
+        req.session.user_id = user.id;
+    
+        res.redirect('/');
+        
+    } catch (err) { 
+        console.log(err.errors);
+        res.redirect('/login');
+    };
+});
+
 module.exports = router;

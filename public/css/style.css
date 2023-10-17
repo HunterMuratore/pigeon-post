@@ -46,7 +46,7 @@ header {
 }
 
 header nav > *:not(:last-child) {
-    margin-right: 5px;
+    margin-right: 8px;
 }
 
 form {
