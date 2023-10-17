@@ -49,6 +49,10 @@ header nav > *:not(:last-child) {
     margin-right: 8px;
 }
 
+nav span {
+    color: rgb(38, 190, 190);
+}
+
 form {
     width: 380px;
     display: flex;
