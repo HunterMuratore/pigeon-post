@@ -6,15 +6,47 @@
 
 body {
     font-family: sans-serif;
-    background-color: bisque;
+    background-color: rgb(252, 228, 200);
 }
 
-body > * {
-    margin: 7px 0;
+a {
+    color: #fff;
+    text-decoration: none;
 }
 
-h1 {
+h1, h2, h3, h4, h5, h6 {
     color: rgb(38, 190, 190);
+}
+
+.column, .row {
+    display: flex;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.text-center {
+    text-align: center;
+}
+
+header {
+    background-color: rgb(91, 92, 92);
+    color: white;
+    padding: 10px 5%;
+    margin-bottom: 35px;
+}
+
+header nav > *:not(:last-child) {
+    margin-right: 5px;
 }
 
 form {

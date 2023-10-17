@@ -8,6 +8,16 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+    <header class="row justify-between align-center">
+        <h3><a href="/">Pigeon Post</a></h3>
+
+        <nav class="row align-center">
+            <a href="/register">Register</a>
+            <span>or</span>
+            <a href="/login">Login</a>
+        </nav>
+    </header>
+
     {{!-- This is what will be injected based off the render call in the server route --}}
     {{{body}}}
 </body>

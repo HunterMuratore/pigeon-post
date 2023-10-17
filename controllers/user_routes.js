@@ -8,18 +8,15 @@ const User = require('../models/User');
 router.post('/register', async (req, res) => {
     const data = req.body;
 
-    // User.create(data)
-    //     .then(newUser => res.send({ message: 'User added successfully!', user: newUser }))
-    //     .catch(err => console.log(err));
-
     try {
         await User.create(data);
     
-        res.render('landing');
+        // Already have a route that renders landing so just redirect to it here
+        res.redirect('/');
         
     } catch (err) { 
         console.log(err.errors);
-        res.render('register');
+        res.redirect('/register');
     };
 });
 

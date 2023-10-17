@@ -7,20 +7,7 @@ const User = require('../models/User');
 // Add one test GET route at root
 router.get('/', (req, res) => {
     // look in the folder 'views' for a file called landing.hbs and compile it
-    res.render('landing', { 
-        name: 'Hunter',
-        fruits: ['orange', 'apple', 'pear'],
-        data: [
-            {
-                name: 'bob',
-                age: 99
-            },
-            {
-                name: 'Hunter',
-                age: 25
-            }
-        ]
-    }); 
+    res.render('landing'); 
 });
 
 // Show the register form
