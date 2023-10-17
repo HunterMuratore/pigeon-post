@@ -1,18 +1,31 @@
 // Create an express router instance object
 const router = require('express').Router();
-const path = require('path');
 const User = require('../models/User');
 
 /* / routes */
 
 // Add one test GET route at root
 router.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../views/landing.html'));
+    // look in the folder 'views' for a file called landing.hbs and compile it
+    res.render('landing', { 
+        name: 'Hunter',
+        fruits: ['orange', 'apple', 'pear'],
+        data: [
+            {
+                name: 'bob',
+                age: 99
+            },
+            {
+                name: 'Hunter',
+                age: 25
+            }
+        ]
+    }); 
 });
 
 // Show the register form
 router.get('/register', (req, res) => {
-    res.sendFile(path.join(__dirname, '../views/register.html'));
+    res.render('register'); 
 });
 
 // Export the router

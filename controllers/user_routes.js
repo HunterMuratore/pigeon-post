@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const path = require('path');
 const User = require('../models/User');
 
 /* /auth routes */
@@ -16,11 +15,11 @@ router.post('/register', async (req, res) => {
     try {
         await User.create(data);
     
-        res.redirect('/');
+        res.render('landing');
         
     } catch (err) { 
         console.log(err.errors);
-        res.redirect('/register');
+        res.render('register');
     };
 });
 

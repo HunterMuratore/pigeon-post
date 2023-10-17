@@ -9,6 +9,10 @@ body {
     background-color: bisque;
 }
 
+body > * {
+    margin: 7px 0;
+}
+
 h1 {
     color: rgb(38, 190, 190);
 }

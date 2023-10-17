@@ -2,6 +2,7 @@ const express = require('express');
 const view_routes = require('./controllers/view_routes');
 const user_routes = require('./controllers/user_routes');
 const db = require('./config/connection');
+const { engine } = require('express-handlebars');
 require('dotenv').config();
 
 const PORT = process.env.PORT || 3333;
@@ -9,6 +10,9 @@ const PORT = process.env.PORT || 3333;
 const app = express();
 
 // Open Middleware channels
+/* Handlebars Middleware */
+app.engine('.hbs', engine({ extname: '.hbs' }));
+app.set('view engine', '.hbs');
 app.use(express.json());
 app.use(express.static('public'));
 

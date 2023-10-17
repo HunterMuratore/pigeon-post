@@ -1,0 +1,21 @@
+<h1>Pigeon Post</h1>
+
+{{!-- double mustache outputs the property value from the render call --}}
+{{!-- INTERPOLATION syntax for Handlebars --}}
+<p>{{name}}</p>
+
+{{!-- Can write for each loops using #each (opening block) and /each (closing block) --}}
+<ul>
+    {{#each fruits}}
+    <li>{{this}}</li>
+    {{/each}}
+</ul>
+
+{{!-- If looping over an array of objects you don't have to use the this keyword --}}
+<section>
+    {{#each data}}
+    <div>
+        {{name}} is {{age}} years old
+    </div>
+    {{/each}}
+</section>
