@@ -1,6 +1,7 @@
 // Create an express router instance object
 const router = require('express').Router();
 const User = require('../models/User');
+const Coo = require('../models/Coo');
 
 /* / routes */
 
@@ -45,7 +46,19 @@ async function authenticate(req, res, next) {
 
 // Add one test GET route at root
 router.get('/', authenticate, async (req, res) => {
-    res.render('landing', { user: req.user });
+    // Find all of the Coos
+    const coos = await Coo.findAll({
+        include: {
+            model: User,
+            as: 'author'
+        }
+    });
+
+    res.render('landing', { 
+        user: req.user,
+        // Send back only the plain objects for the coos array
+        coos: coos.map(c => c.get({ plain: true }))
+    });
 });
 
 // Show the register form if the user is not logged in

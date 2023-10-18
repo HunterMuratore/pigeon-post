@@ -77,3 +77,19 @@ form h1 {
 form p.error {
     color: red;
 }
+
+.coo-output {
+    margin-top: 30px;
+}
+
+.coo {
+    margin-bottom: 15px;
+}
+
+.coo h3 {
+    margin-bottom: 15px;
+}
+
+.coo p:first-child {
+    margin-right: 25px;
+}
