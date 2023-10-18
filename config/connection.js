@@ -8,7 +8,9 @@ const sequelize = new Sequelize(
     process.env.DB_PASSWORD, 
     {
         host: 'localhost',
-        dialect: 'mysql'
+        dialect: 'mysql',
+        // Turns off sql logging in terminal
+        logging: false
 });
 
 module.exports = sequelize;
