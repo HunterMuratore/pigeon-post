@@ -55,4 +55,11 @@ router.post('/login', async (req, res) => {
     res.redirect('/');
 })
 
+// Log the user out of their session and redirect back to home page
+router.get('/logout', (req, res) => {
+    req.session.destroy();
+
+    res.redirect('/');
+});
+
 module.exports = router;
