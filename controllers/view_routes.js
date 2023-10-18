@@ -67,7 +67,6 @@ router.get('/login', isLoggedIn, authenticate, (req, res) => {
         user: req.user
     });
 
-    // Clear the error array after you render them
     req.session.errors = [];
 });
 
@@ -76,6 +75,8 @@ router.get('/coo', isAuthenticated, authenticate, (req, res) => {
     res.render('coo', {
       user: req.user
     });
+
+    req.session.errors = [];
 });
 
 // Export the router
