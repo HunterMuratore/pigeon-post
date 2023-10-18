@@ -41,7 +41,7 @@ router.post('/login', async (req, res) => {
         return res.redirect('/login');
     }
 
-    const pass_is_valid = await User.validatePass(data.password);
+    const pass_is_valid = await user.validatePass(data.password);
     
     // Check if password is valid
     if (!pass_is_valid) {

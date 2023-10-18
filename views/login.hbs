@@ -3,9 +3,9 @@
 
   {{!-- Error handling - Don't need to do a conditional check bc Handlebars will not run an each loop ifthe condition isn't true --}}
   {{#each errors}}
-    <p class="error">{{this}}</p>
+    <p class="error text-center">{{this}}</p>
   {{/each}}
-  
+
   <input type="text" name="email" placeholder="Enter email" required>
   <input type="password" name="password" placeholder="Enter password" required>
   <button type="submit">Submit</button>

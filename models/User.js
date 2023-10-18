@@ -9,7 +9,10 @@ User.init({
     email: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true,
+        unique: {
+            args: true, 
+            msg: 'That email address is already in use.'
+        },
         validate: {
             isEmail: true
         }
@@ -18,7 +21,10 @@ User.init({
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-            min: 6
+            len: {
+                args: 6, 
+                msg: 'Password must be at least 6 characters long.'
+            }
         }
     }
 }, {
