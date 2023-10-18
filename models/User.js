@@ -1,4 +1,4 @@
-const { Model, DataTypes } = require('sequelize');
+const { Model, DataTypes, Sequelize } = require('sequelize');
 const { hash, compare } = require('bcrypt');
 const db = require('../config/connection');
 

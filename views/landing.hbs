@@ -1,1 +1,13 @@
-<h1 class="text-center">Pigeon Post</h1>
+<h1 class="text-center">Pigeon Coos</h1>
+
+<section class="column align-center coo-output">
+    {{#each coos}}
+        <div class="coo text-center">
+            <h3>{{text}}</h3>
+            <div class="row justify-between">
+                <p>By: {{author.email}}</p>
+                <p>On: {{date}}</p>
+            </div>
+        </div>
+    {{/each}}
+</section>
