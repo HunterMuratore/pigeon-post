@@ -1,4 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
+const { hash, compare } = require('bcrypt');
 const db = require('../config/connection');
 
 class User extends Model { }
@@ -23,7 +24,23 @@ User.init({
 }, {
     modelName: 'user',
     // Connection object
-    sequelize: db
+    sequelize: db,
+    hooks: {
+        // Hook into the user right before it gets added to the table
+        async beforeCreate(user) {
+            // Encrypt the user's password with 10 salts (layers of encryption)
+            user.password = await hash(user.password, 10);
+
+            return user;
+        }
+    }
 });
+
+// Create a method on the user that will compare the password they submitted in the login form to the encrypted password in the database
+User.prototype.validatePass = async function(form_password) {
+    const is_valid = await compare(form_password, this.password);
+
+    return is_valid;
+}
 
 module.exports = User;

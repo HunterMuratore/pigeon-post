@@ -9,13 +9,18 @@ router.post('/register', async (req, res) => {
     const data = req.body;
 
     try {
-        await User.create(data);
+        const user = await User.create(data);
     
+        // Authenticate user
+        req.session.user_id = user.id;
+
         // Already have a route that renders landing so just redirect to it here
         res.redirect('/');
         
     } catch (err) { 
-        console.log(err.errors);
+        // Get the sequelize error object array and loop over it to turn each error object into a string
+        // Results in an array of just the error messages
+        req.session.errors = err.errors.map(errObj => errObj.message);
         res.redirect('/register');
     };
 });
@@ -23,23 +28,31 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
     const data = req.body;
 
-    try {
-        // Find the user by the email they sent through the form
-        const user = await User.findOne({
-            where: {
-                email: data.email
-            }
-        });
+    // Find the user by the email they sent through the form
+    const user = await User.findOne({
+        where: {
+            email: data.email
+        }
+    });
 
-        // Take the id of the user and set it to the session id
-        req.session.user_id = user.id;
+    // User not found with the email address provided
+    if (!user) {
+        req.session.errors = ['No user found with that email address.'];
+        return res.redirect('/login');
+    }
+
+    const pass_is_valid = await User.validatePass(data.password);
     
-        res.redirect('/');
-        
-    } catch (err) { 
-        console.log(err.errors);
-        res.redirect('/login');
-    };
-});
+    // Check if password is valid
+    if (!pass_is_valid) {
+        req.session.errors = ['Password is incorrect.'];
+        return res.redirect('/login');
+    }
+
+    // Log in the user - Take the id of the user and set it to the session id
+    req.session.user_id = user.id;
+
+    res.redirect('/');
+})
 
 module.exports = router;

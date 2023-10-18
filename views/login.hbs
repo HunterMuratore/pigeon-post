@@ -1,6 +1,12 @@
 <form action="/auth/login" method="POST">
-    <h1>Log In</h1>
-    <input type="text" name="email" placeholder="Enter email" required>
-    <input type="password" name="password" placeholder="Enter password" required>
-    <button type="submit">Submit</button>
+  <h1>Log In</h1>
+
+  {{!-- Error handling - Don't need to do a conditional check bc Handlebars will not run an each loop ifthe condition isn't true --}}
+  {{#each errors}}
+    <p class="error">{{this}}</p>
+  {{/each}}
+  
+  <input type="text" name="email" placeholder="Enter email" required>
+  <input type="password" name="password" placeholder="Enter password" required>
+  <button type="submit">Submit</button>
 </form>
