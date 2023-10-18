@@ -2,6 +2,8 @@ const { Model, DataTypes } = require('sequelize');
 const { hash, compare } = require('bcrypt');
 const db = require('../config/connection');
 
+const Coo = require('./Coo');
+
 class User extends Model { }
 
 // Call the User class and setup a couple columns for it
@@ -48,5 +50,11 @@ User.prototype.validatePass = async function(form_password) {
 
     return is_valid;
 }
+
+/* Associations */
+// User object will have the property 'coos' on it that will have all of that user's coos
+User.hasMany(Coo, { as: 'coos', foreignKey: 'author_id' });
+// Coo object will have the property 'author' on it that will be the User who wrote the coo
+Coo.belongsTo(User, { as: 'author', foreignKey: 'author_id' });
 
 module.exports = User;
